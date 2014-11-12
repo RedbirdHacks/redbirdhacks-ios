@@ -27,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		212A68811A12E7F300C9B7AD /* jsonRequestPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = jsonRequestPlayground.playground; sourceTree = "<group>"; };
 		218E34E819F4ABE5006F9987 /* RedbirdHacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedbirdHacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E34EC19F4ABE5006F9987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		218E34ED19F4ABE5006F9987 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 			children = (
 				218E34ED19F4ABE5006F9987 /* AppDelegate.swift */,
 				218E34EF19F4ABE5006F9987 /* UpdatesViewController.swift */,
+				212A68811A12E7F300C9B7AD /* jsonRequestPlayground.playground */,
 				218E34F319F4ABE5006F9987 /* Main.storyboard */,
 				21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */,
 				218E34F619F4ABE5006F9987 /* Images.xcassets */,

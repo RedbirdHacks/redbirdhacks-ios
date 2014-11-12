@@ -59,8 +59,25 @@ class UpdatesViewController: UITableViewController, NSURLConnectionDelegate {
         var cell = tableView.dequeueReusableCellWithIdentifier("UpdateCell", forIndexPath: indexPath) as UITableViewCell
         
         if let update = self.tableData[indexPath.row] as? NSDictionary {
-            if let text = update["text"] as? NSString {
-                cell.textLabel.text = text
+            if let text = update["text"] as? String {
+                var attributedText = NSMutableAttributedString(string: String())
+                // test code
+//                var attributedString = NSMutableAttributedString(string: text)
+                let wordsArray = split(text, { $0 == " "}, maxSplit: Int.max, allowEmptySlices: false)
+                for word in wordsArray {
+                    if word.hasPrefix("#") {
+                        var hashtag = NSMutableAttributedString(string: "\(word) ")
+                        let wordRange = NSMakeRange(0, word.utf16Count)
+                        hashtag.addAttribute(NSForegroundColorAttributeName, value: UIColor(red:0.7, green:0, blue:0.1, alpha:1), range:wordRange)
+                        attributedText.appendAttributedString(hashtag)
+                    }
+                    else {
+                        attributedText.appendAttributedString(NSAttributedString(string: "\(word) "))
+                    }
+                }
+                //
+                
+                cell.textLabel.attributedText = attributedText
                 cell.textLabel.numberOfLines = 0
             }
             if let text = update["date"] as? NSString {
