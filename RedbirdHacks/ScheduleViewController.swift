@@ -55,7 +55,7 @@ class ScheduleViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+//        super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
     
@@ -70,11 +70,12 @@ class ScheduleViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as EventCell
         
         if let event = self.tableData[indexPath.row] as? NSDictionary {
             if let text = event["title"] as? String {
-                cell.detailTextLabel?.text = text
+                cell.title.text = text
+                cell.title.sizeToFit()
             }
             
             if let fromText = event["from"] as? NSString {
@@ -91,8 +92,9 @@ class ScheduleViewController: UITableViewController {
                     
                     let formattedToTimeString = formatter.stringFromDate(toDate)
                     
-                    cell.textLabel?.text = "\(formattedFromTimeString) - \(formattedToTimeString)"
-                    cell.textLabel?.numberOfLines = 0
+                    cell.startTimeLabel.text = "\(formattedFromTimeString) - "
+                    cell.endTimeLabel.text = formattedToTimeString
+//                    cell.time.numberOfLines = 0
                 }
             }
         }
