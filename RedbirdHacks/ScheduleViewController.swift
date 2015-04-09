@@ -62,7 +62,6 @@ class ScheduleViewController: UITableViewController {
     // MARK: TableView Stuff
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("Number of Rows: \(data.length)")
         return tableData.count
     }
     
@@ -77,8 +76,24 @@ class ScheduleViewController: UITableViewController {
             if let text = event["title"] as? String {
                 cell.detailTextLabel?.text = text
             }
-            if let text = event["time"] as? String {
-                cell.textLabel?.text = text
+            
+            if let fromText = event["from"] as? NSString {
+                if let toText = event["to"] as? NSString {
+                    let fromSeconds = fromText.doubleValue
+                    let fromDate = NSDate(timeIntervalSince1970: fromSeconds)
+                    
+                    let formatter = NSDateFormatter()
+                    formatter.timeStyle = .ShortStyle
+                    let formattedFromTimeString = formatter.stringFromDate(fromDate)
+                    
+                    let toSeconds = toText.doubleValue
+                    let toDate = NSDate(timeIntervalSince1970: toSeconds)
+                    
+                    let formattedToTimeString = formatter.stringFromDate(toDate)
+                    
+                    cell.textLabel?.text = "\(formattedFromTimeString) - \(formattedToTimeString)"
+                    cell.textLabel?.numberOfLines = 0
+                }
             }
         }
         return cell

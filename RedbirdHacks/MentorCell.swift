@@ -11,5 +11,5 @@ import UIKit
 class MentorCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var specialty: UILabel!
-    @IBOutlet weak var contact: UILabel!
+    @IBOutlet weak var contact: UIButton!
 }

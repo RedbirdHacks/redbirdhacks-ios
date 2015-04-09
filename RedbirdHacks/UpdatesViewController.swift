@@ -100,12 +100,16 @@ class UpdatesViewController: UITableViewController {
                 cell.textLabel?.sizeToFit()
             }
             if let text = update["date"] as? NSString {
+//                formatter.dateStyle = .LongStyle
+//                formatter.timeStyle = .ShortStyle
+//                let date = formatter.dateFromString(text)
+                let seconds = text.doubleValue
+                let date = NSDate(timeIntervalSince1970: seconds)
+                
                 let formatter = NSDateFormatter()
-                formatter.dateStyle = .LongStyle
-                formatter.timeStyle = .ShortStyle
-                let date = formatter.dateFromString(text)
                 formatter.dateStyle = .ShortStyle
-                let formattedDateString = formatter.stringFromDate(date!)
+                formatter.timeStyle = .ShortStyle
+                let formattedDateString = formatter.stringFromDate(date)
                 cell.detailTextLabel?.text = formattedDateString
             }
         }
