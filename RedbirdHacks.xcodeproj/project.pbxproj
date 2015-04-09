@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210662351A193CAC006E3419 /* mentors.json in Resources */ = {isa = PBXBuildFile; fileRef = 210662341A193CAC006E3419 /* mentors.json */; };
+		210662371A1941C9006E3419 /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = 210662361A1941C9006E3419 /* schedule.json */; };
+		211EABEA1A6E216900C77FF9 /* MentorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211EABE91A6E216900C77FF9 /* MentorsViewController.swift */; };
+		211EABEC1A6F4BC400C77FF9 /* MentorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211EABEB1A6F4BC400C77FF9 /* MentorCell.swift */; };
+		211EABEE1A6F5D6300C77FF9 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211EABED1A6F5D6300C77FF9 /* ScheduleViewController.swift */; };
+		211EABF01A6F5ED600C77FF9 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211EABEF1A6F5ED600C77FF9 /* EventCell.swift */; };
 		218E34EE19F4ABE5006F9987 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E34ED19F4ABE5006F9987 /* AppDelegate.swift */; };
 		218E34F019F4ABE5006F9987 /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E34EF19F4ABE5006F9987 /* UpdatesViewController.swift */; };
 		218E34F519F4ABE5006F9987 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 218E34F319F4ABE5006F9987 /* Main.storyboard */; };
@@ -27,6 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		210662341A193CAC006E3419 /* mentors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mentors.json; sourceTree = "<group>"; };
+		210662361A1941C9006E3419 /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.json; sourceTree = "<group>"; };
+		211EABE91A6E216900C77FF9 /* MentorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentorsViewController.swift; sourceTree = "<group>"; };
+		211EABEB1A6F4BC400C77FF9 /* MentorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentorCell.swift; sourceTree = "<group>"; };
+		211EABED1A6F5D6300C77FF9 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		211EABEF1A6F5ED600C77FF9 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		212A68811A12E7F300C9B7AD /* jsonRequestPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = jsonRequestPlayground.playground; sourceTree = "<group>"; };
 		218E34E819F4ABE5006F9987 /* RedbirdHacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedbirdHacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E34EC19F4ABE5006F9987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		210662331A193C5B006E3419 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				210662341A193CAC006E3419 /* mentors.json */,
+				210662361A1941C9006E3419 /* schedule.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		218E34DF19F4ABE5006F9987 = {
 			isa = PBXGroup;
 			children = (
@@ -80,13 +101,18 @@
 		218E34EA19F4ABE5006F9987 /* RedbirdHacks */ = {
 			isa = PBXGroup;
 			children = (
+				211EABEB1A6F4BC400C77FF9 /* MentorCell.swift */,
 				218E34ED19F4ABE5006F9987 /* AppDelegate.swift */,
 				218E34EF19F4ABE5006F9987 /* UpdatesViewController.swift */,
+				211EABE91A6E216900C77FF9 /* MentorsViewController.swift */,
+				211EABED1A6F5D6300C77FF9 /* ScheduleViewController.swift */,
+				211EABEF1A6F5ED600C77FF9 /* EventCell.swift */,
 				212A68811A12E7F300C9B7AD /* jsonRequestPlayground.playground */,
 				218E34F319F4ABE5006F9987 /* Main.storyboard */,
 				21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */,
 				218E34F619F4ABE5006F9987 /* Images.xcassets */,
 				218E34F819F4ABE5006F9987 /* LaunchScreen.xib */,
+				210662331A193C5B006E3419 /* Resources */,
 				218E34EB19F4ABE5006F9987 /* Supporting Files */,
 			);
 			path = RedbirdHacks;
@@ -198,6 +224,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210662351A193CAC006E3419 /* mentors.json in Resources */,
+				210662371A1941C9006E3419 /* schedule.json in Resources */,
 				218E34F519F4ABE5006F9987 /* Main.storyboard in Resources */,
 				218E34FA19F4ABE5006F9987 /* LaunchScreen.xib in Resources */,
 				218E34F719F4ABE5006F9987 /* Images.xcassets in Resources */,
@@ -219,8 +247,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				218E34EE19F4ABE5006F9987 /* AppDelegate.swift in Sources */,
+				211EABEC1A6F4BC400C77FF9 /* MentorCell.swift in Sources */,
 				21FA996E1A073F1D005EF591 /* UpdateTableViewCell.swift in Sources */,
+				211EABEE1A6F5D6300C77FF9 /* ScheduleViewController.swift in Sources */,
+				211EABEA1A6E216900C77FF9 /* MentorsViewController.swift in Sources */,
 				218E34F019F4ABE5006F9987 /* UpdatesViewController.swift in Sources */,
+				211EABF01A6F5ED600C77FF9 /* EventCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

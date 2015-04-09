@@ -65,9 +65,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
         if let navn = self.items[indexPath.row]["trackName"] as? NSString {
-            cell.textLabel.text = navn
+            cell.textLabel?.text = navn
         } else {
-            cell.textLabel.text = "No Name"
+            cell.textLabel?.text = "No Name"
         }
         
         if let desc = self.items[indexPath.row]["description"] as? NSString {

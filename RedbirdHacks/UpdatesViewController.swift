@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  UpdatesViewController.swift
 //  RedbirdHacks
 //
 //  Created by Tallyn Turnbow on 10/19/14.
@@ -9,20 +9,48 @@
 import UIKit
 
 
-class UpdatesViewController: UITableViewController, NSURLConnectionDelegate {
+class UpdatesViewController: UITableViewController {
     
-    lazy var data = NSMutableData()
+    let session = NSURLSession.sharedSession()
+    
+//    lazy var data = NSMutableData()
     lazy var jsonResult = NSDictionary()
     
     var tableData = NSArray()
+    
+    let announcementsURL = "http://redbirdhacks.org/json/announcements.json"
+//    var announcements = [AnyObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //        self.tableView.estimatedRowHeight = 100.0
-        startConnection()
+//        startConnection()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationChanged:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
+        var announcementsDataTask = session.dataTaskWithURL(NSURL(string: announcementsURL)!) { data, urlResponse, error in
+            var jsonErrorOptional: NSError?
+            let jsonOptional: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonErrorOptional)
+            if let json = jsonOptional as? Dictionary<String, AnyObject> {
+                if let newResults = json["announcements"]? as? [AnyObject] {
+//                    self.announcements = newResults
+                    self.tableData = newResults
+                    
+                    // reload data on main thread
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+        announcementsDataTask.resume()
     }
-
+    
+    func orientationChanged(notification: NSNotification){
+        self.tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -36,24 +64,13 @@ class UpdatesViewController: UITableViewController, NSURLConnectionDelegate {
     // MARK: TableView Stuff
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("Number of Rows: \(data.length)")
+//        println("Number of Rows: \(data.length)")
         return tableData.count
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
-    
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        var size = CGSize()
-//        if let update = self.tableData[indexPath.row] as? NSDictionary {
-//            if let text = update["text"] as? NSString {
-//                size = text.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(14.0)])
-//            }
-//        }
-//        size.height += 40.0
-//        return size.height
-//    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("UpdateCell", forIndexPath: indexPath) as UITableViewCell
@@ -80,6 +97,7 @@ class UpdatesViewController: UITableViewController, NSURLConnectionDelegate {
                 
                 cell.textLabel?.attributedText = attributedText
                 cell.textLabel?.numberOfLines = 0
+                cell.textLabel?.sizeToFit()
             }
             if let text = update["date"] as? NSString {
                 let formatter = NSDateFormatter()
@@ -96,26 +114,4 @@ class UpdatesViewController: UITableViewController, NSURLConnectionDelegate {
     
     
     // MARK: JSON request Stuff
-    
-    func startConnection() {
-        let urlPath: String = "http://mjhavens.com/announcements.json"
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
-        connection.start()
-    }
-    
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-        self.data.appendData(data)
-    }
-    
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
-        var err: NSError
-        jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-        var results: NSArray = jsonResult["announcements"] as NSArray
-        self.tableData = results
-        println(jsonResult)
-        self.tableView.reloadData()
-    }
-
 }
