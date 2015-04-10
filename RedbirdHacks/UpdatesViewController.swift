@@ -24,7 +24,7 @@ class UpdatesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        //        self.tableView.estimatedRowHeight = 100.0
+        self.tableView.estimatedRowHeight = 100.0
 //        startConnection()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationChanged:", name: UIDeviceOrientationDidChangeNotification, object: nil)
@@ -33,7 +33,7 @@ class UpdatesViewController: UITableViewController {
             var jsonErrorOptional: NSError?
             let jsonOptional: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonErrorOptional)
             if let json = jsonOptional as? Dictionary<String, AnyObject> {
-                if let newResults = json["announcements"]? as? [AnyObject] {
+                if let newResults = json["announcements"] as? [AnyObject] {
 //                    self.announcements = newResults
                     self.tableData = newResults
                     
@@ -73,16 +73,17 @@ class UpdatesViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("UpdateCell", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("UpdateCell", forIndexPath: indexPath) as! UITableViewCell
         
         if let update = self.tableData[indexPath.row] as? NSDictionary {
             if let text = update["text"] as? String {
                 var attributedText = NSMutableAttributedString(string: String())
-                let wordsArray = split(text, { $0 == " "}, maxSplit: Int.max, allowEmptySlices: false)
+                let wordsArray = split(text, maxSplit: Int.max, allowEmptySlices: false, isSeparator: { $0 == " "})
+//                let wordsArray = split(text, { $0 == " "}, maxSplit: Int.max, allowEmptySlices: false)
                 for word in wordsArray {
                     if word.hasPrefix("#") {
                         var hashtag = NSMutableAttributedString(string: "\(word) ")
-                        let wordRange = NSMakeRange(0, word.utf16Count)
+                        let wordRange = NSMakeRange(0, count(word.utf16))
                         // color it red
                         hashtag.addAttribute(NSForegroundColorAttributeName, value: UIColor(red:0.7, green:0, blue:0.1, alpha:1), range:wordRange)
                         // add the URL

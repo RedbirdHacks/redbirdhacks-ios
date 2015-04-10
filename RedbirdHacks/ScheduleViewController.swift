@@ -15,7 +15,7 @@ class ScheduleViewController: UITableViewController {
     lazy var data = NSMutableData()
     lazy var jsonResult = NSDictionary()
     
-    var tableData = NSArray()
+    var tableData = [Event]()
     
     let scheduleURL = "https://redbirdhacks.org/json/events.json"
     //    var announcements = [AnyObject]()
@@ -32,8 +32,30 @@ class ScheduleViewController: UITableViewController {
             var jsonErrorOptional: NSError?
             let jsonOptional: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonErrorOptional)
             if let json = jsonOptional as? Dictionary<String, AnyObject> {
-                if let newResults = json["events"]? as? [AnyObject] {
-                    self.tableData = newResults
+                if let newResults = json["events"] as? [AnyObject] {
+                    
+                    // Load the json into events array here
+                    var eventsArray = [Event]()
+                    
+                    for i in 0 ..< newResults.count {
+                        let result: AnyObject = newResults[i]
+                        if let toDateText = result["to"] as? NSString,
+                               fromDateText = result["from"] as? NSString,
+                               title = result["title"] as? String {
+                                let toSeconds = toDateText.doubleValue
+                                let toDate = NSDate(timeIntervalSince1970: toSeconds)
+                                
+                                let fromSeconds = fromDateText.doubleValue
+                                let fromDate = NSDate(timeIntervalSince1970: fromSeconds)
+                                
+                                let description = result["description"] as? String
+                                
+                                var event = Event(fromDate: fromDate, toDate: toDate, title: title, description: description)
+                                eventsArray.append(event)
+                        }
+                    }
+                    
+                    self.tableData = eventsArray
                     
                     // reload data on main thread
                     dispatch_async(dispatch_get_main_queue()) {
@@ -70,34 +92,19 @@ class ScheduleViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as EventCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! EventCell
         
-        if let event = self.tableData[indexPath.row] as? NSDictionary {
-            if let text = event["title"] as? String {
-                cell.title.text = text
-                cell.title.sizeToFit()
-            }
-            
-            if let fromText = event["from"] as? NSString {
-                if let toText = event["to"] as? NSString {
-                    let fromSeconds = fromText.doubleValue
-                    let fromDate = NSDate(timeIntervalSince1970: fromSeconds)
-                    
-                    let formatter = NSDateFormatter()
-                    formatter.timeStyle = .ShortStyle
-                    let formattedFromTimeString = formatter.stringFromDate(fromDate)
-                    
-                    let toSeconds = toText.doubleValue
-                    let toDate = NSDate(timeIntervalSince1970: toSeconds)
-                    
-                    let formattedToTimeString = formatter.stringFromDate(toDate)
-                    
-                    cell.startTimeLabel.text = "\(formattedFromTimeString) - "
-                    cell.endTimeLabel.text = formattedToTimeString
-//                    cell.time.numberOfLines = 0
-                }
-            }
-        }
+        let event = self.tableData[indexPath.row]
+        
+        cell.title.text = event.title
+        cell.title.sizeToFit()
+        
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        
+        cell.startTimeLabel.text = "\(formatter.stringFromDate(event.fromDate)) - "
+        cell.endTimeLabel.text = formatter.stringFromDate(event.toDate)
+        
         return cell
     }
 }

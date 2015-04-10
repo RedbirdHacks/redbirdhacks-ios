@@ -33,7 +33,7 @@ class MentorsViewController: UITableViewController {
             var jsonErrorOptional: NSError?
             let jsonOptional: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonErrorOptional)
             if let json = jsonOptional as? Dictionary<String, AnyObject> {
-                if let newResults = json["mentors"]? as? [AnyObject] {
+                if let newResults = json["mentors"] as? [AnyObject] {
                     self.tableData = newResults
                     
                     // reload data on main thread
@@ -72,7 +72,7 @@ class MentorsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("MentorCell", forIndexPath: indexPath) as MentorCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("MentorCell", forIndexPath: indexPath) as! MentorCell
         
         if let mentor = self.tableData[indexPath.row] as? NSDictionary {
             if let text = mentor["name"] as? String {

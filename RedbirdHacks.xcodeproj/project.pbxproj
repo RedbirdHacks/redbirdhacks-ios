@@ -19,6 +19,7 @@
 		218E34F719F4ABE5006F9987 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218E34F619F4ABE5006F9987 /* Images.xcassets */; };
 		218E34FA19F4ABE5006F9987 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218E34F819F4ABE5006F9987 /* LaunchScreen.xib */; };
 		218E350619F4ABE5006F9987 /* RedbirdHacksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E350519F4ABE5006F9987 /* RedbirdHacksTests.swift */; };
+		21E3576A1AD733BC00E02688 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E357691AD733BC00E02688 /* Event.swift */; };
 		21FA996E1A073F1D005EF591 /* UpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		218E34FF19F4ABE5006F9987 /* RedbirdHacksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedbirdHacksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E350419F4ABE5006F9987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		218E350519F4ABE5006F9987 /* RedbirdHacksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedbirdHacksTests.swift; sourceTree = "<group>"; };
+		21E357691AD733BC00E02688 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 				218E34F819F4ABE5006F9987 /* LaunchScreen.xib */,
 				210662331A193C5B006E3419 /* Resources */,
 				218E34EB19F4ABE5006F9987 /* Supporting Files */,
+				21E357691AD733BC00E02688 /* Event.swift */,
 			);
 			path = RedbirdHacks;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E3576A1AD733BC00E02688 /* Event.swift in Sources */,
 				218E34EE19F4ABE5006F9987 /* AppDelegate.swift in Sources */,
 				211EABEC1A6F4BC400C77FF9 /* MentorCell.swift in Sources */,
 				21FA996E1A073F1D005EF591 /* UpdateTableViewCell.swift in Sources */,
