@@ -113,21 +113,21 @@
 		218E34EA19F4ABE5006F9987 /* RedbirdHacks */ = {
 			isa = PBXGroup;
 			children = (
-				211EABEB1A6F4BC400C77FF9 /* MentorCell.swift */,
-				218E34ED19F4ABE5006F9987 /* AppDelegate.swift */,
+				21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */,
 				218E34EF19F4ABE5006F9987 /* UpdatesViewController.swift */,
+				21CFDF531ADB6B4D009B3536 /* Mentor.swift */,
+				211EABEB1A6F4BC400C77FF9 /* MentorCell.swift */,
 				211EABE91A6E216900C77FF9 /* MentorsViewController.swift */,
-				211EABED1A6F5D6300C77FF9 /* ScheduleViewController.swift */,
-				211EABEF1A6F5ED600C77FF9 /* EventCell.swift */,
 				21E357691AD733BC00E02688 /* Event.swift */,
+				211EABEF1A6F5ED600C77FF9 /* EventCell.swift */,
+				211EABED1A6F5D6300C77FF9 /* ScheduleViewController.swift */,
+				218E34ED19F4ABE5006F9987 /* AppDelegate.swift */,
 				212A68811A12E7F300C9B7AD /* jsonRequestPlayground.playground */,
 				218E34F319F4ABE5006F9987 /* Main.storyboard */,
-				21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */,
 				218E34F619F4ABE5006F9987 /* Images.xcassets */,
 				218E34F819F4ABE5006F9987 /* LaunchScreen.xib */,
 				210662331A193C5B006E3419 /* Resources */,
 				218E34EB19F4ABE5006F9987 /* Supporting Files */,
-				21CFDF531ADB6B4D009B3536 /* Mentor.swift */,
 			);
 			path = RedbirdHacks;
 			sourceTree = "<group>";

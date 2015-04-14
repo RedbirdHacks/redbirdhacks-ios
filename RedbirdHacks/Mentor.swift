@@ -13,7 +13,7 @@ enum ContactMethod {
     case Facebook(NSURL)
     case Email(String)
     case LinkedIn(NSURL)
-    case Phone(Int)
+    case Phone(String)
 }
 
 struct Mentor {

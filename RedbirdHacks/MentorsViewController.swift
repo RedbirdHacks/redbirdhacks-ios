@@ -22,7 +22,7 @@ class MentorsViewController: UITableViewController {
     
     var mentors = [Mentor]()
     
-    let mentorsURL = "https://api.myjson.com/bins/30aap"
+    let mentorsURL = "http://redbirdhacks.org/json/mentors.json"
 //    var announcements = [AnyObject]()
     
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class MentorsViewController: UITableViewController {
                                         contactMethods.append(linkedin)
                                     }
                                     if let phoneString = contacts["phone"] as? String where !phoneString.isEmpty {
-                                        let phone = ContactMethod.Phone(phoneString.toInt()!)
+                                        let phone = ContactMethod.Phone(phoneString)
                                         contactMethods.append(phone)
                                     }
                                 }
@@ -127,7 +127,7 @@ class MentorsViewController: UITableViewController {
         case .LinkedIn(let linkedInURL):
             title = "linkedin"
         case .Phone(let phoneNumber):
-            title = "call"
+            title = "text"
         case .Twitter(let twitterURL):
             title = "tweet"
         }
@@ -173,6 +173,14 @@ class MentorsViewController: UITableViewController {
                     UIApplication.sharedApplication().openURL(facebookURL)
                 case ContactMethod.LinkedIn(let linkedInURL):
                     UIApplication.sharedApplication().openURL(linkedInURL)
+                case ContactMethod.Phone(let phoneNumber):
+                    if MFMessageComposeViewController.canSendText() {
+                        let messageComposeVC = MFMessageComposeViewController()
+                        messageComposeVC.messageComposeDelegate = self
+                        messageComposeVC.recipients = [phoneNumber]
+                        messageComposeVC.body = "RedbirdHacks - "
+                        self.presentViewController(messageComposeVC, animated: true, completion: nil)
+                    }
                 default:
                     println("tap action not defined")
                 }
@@ -194,6 +202,16 @@ extension MentorsViewController: MFMailComposeViewControllerDelegate {
         default:
             break
         }
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
+}
+
+extension MentorsViewController: MFMessageComposeViewControllerDelegate {
+    func deviceCanSendText() -> Bool {
+        return MFMessageComposeViewController.canSendText()
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
         self.dismissViewControllerAnimated(false, completion: nil)
     }
 }
