@@ -22,7 +22,7 @@ class MentorsViewController: UITableViewController {
     
     var mentors = [Mentor]()
     
-    let mentorsURL = "http://redbirdhacks.org/json/mentors.json"
+    let mentorsURL = "https://redbirdhacks.org/json/mentors.json"
 //    var announcements = [AnyObject]()
     
     override func viewDidLoad() {

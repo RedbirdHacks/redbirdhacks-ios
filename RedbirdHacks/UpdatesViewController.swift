@@ -18,7 +18,7 @@ class UpdatesViewController: UITableViewController {
     
     var tableData = NSArray()
     
-    let announcementsURL = "http://redbirdhacks.org/json/announcements.json"
+    let announcementsURL = "https://redbirdhacks.org/json/announcements.json"
 //    var announcements = [AnyObject]()
 
     override func viewDidLoad() {
