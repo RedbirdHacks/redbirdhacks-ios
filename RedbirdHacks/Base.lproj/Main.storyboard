@@ -126,51 +126,25 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="36" id="V5m-p8-CUM" customClass="EventCell" customModule="RedbirdHacks" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" textLabel="ATg-ut-RKq" detailTextLabel="PNS-7u-3Qg" style="IBUITableViewCellStyleSubtitle" id="WiQ-7K-OGt">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V5m-p8-CUM" id="LvC-7D-Bnb">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WiQ-7K-OGt" id="6Qx-Xu-cc0">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="10:00 PM -" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u91-oz-6Hq">
-                                            <rect key="frame" x="8" y="8" width="76" height="18"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="76" id="4fV-nM-1HY"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.67843137249999996" green="0.0" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="10:30 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJO-ch-cVl">
-                                            <rect key="frame" x="88" y="8" width="66" height="18"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="66" id="FVa-mm-ZAL"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.67843137249999996" green="0.0" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Swag and WiFi credentials will be handed out." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHR-aj-l5G">
-                                            <rect key="frame" x="162" y="6" width="430" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ATg-ut-RKq">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PNS-7u-3Qg">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.67450980390000004" green="0.0" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="GJO-ch-cVl" firstAttribute="baseline" secondItem="u91-oz-6Hq" secondAttribute="baseline" id="9Mg-y4-k3R"/>
-                                        <constraint firstItem="AHR-aj-l5G" firstAttribute="baseline" secondItem="u91-oz-6Hq" secondAttribute="baseline" id="AgF-A1-TOc"/>
-                                        <constraint firstItem="AHR-aj-l5G" firstAttribute="leading" secondItem="GJO-ch-cVl" secondAttribute="trailing" constant="8" id="J4S-i5-KeD"/>
-                                        <constraint firstItem="GJO-ch-cVl" firstAttribute="leading" secondItem="u91-oz-6Hq" secondAttribute="trailing" constant="4" id="KTs-Jx-LBh"/>
-                                        <constraint firstItem="u91-oz-6Hq" firstAttribute="leading" secondItem="LvC-7D-Bnb" secondAttribute="leadingMargin" id="ZxU-xH-jdu"/>
-                                        <constraint firstAttribute="centerY" secondItem="u91-oz-6Hq" secondAttribute="centerY" id="fGm-iq-Pjo"/>
-                                        <constraint firstItem="AHR-aj-l5G" firstAttribute="trailing" secondItem="LvC-7D-Bnb" secondAttribute="trailingMargin" id="rmS-DW-V6n"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="endTimeLabel" destination="GJO-ch-cVl" id="IOd-uu-EYi"/>
-                                    <outlet property="startTimeLabel" destination="u91-oz-6Hq" id="pu7-bN-htL"/>
-                                    <outlet property="title" destination="AHR-aj-l5G" id="F82-Cp-evp"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

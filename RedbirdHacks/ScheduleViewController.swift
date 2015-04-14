@@ -30,6 +30,8 @@ class ScheduleViewController: UITableViewController {
         //        self.tableView.estimatedRowHeight = 100.0
         //        startConnection()
         
+        self.tableView.estimatedRowHeight = 150.0
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationChanged:", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         var scheduleDataTask = session.dataTaskWithURL(NSURL(string: scheduleURL)!) { data, urlResponse, error in
@@ -124,20 +126,23 @@ class ScheduleViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! EventCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! UITableViewCell
         
 //        let event = self.tableData[indexPath.row]
         let sectionArray = tableGrouped[dayKeys[indexPath.section]]
         let event = sectionArray![indexPath.row]
         
-        cell.title.text = event.title
-        cell.title.sizeToFit()
+        cell.textLabel?.text = event.title
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.sizeToFit()
         
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
         
-        cell.startTimeLabel.text = "\(formatter.stringFromDate(event.fromDate)) - "
-        cell.endTimeLabel.text = formatter.stringFromDate(event.toDate)
+        cell.detailTextLabel?.text = "\(formatter.stringFromDate(event.fromDate)) - \(formatter.stringFromDate(event.toDate))"
+        
+//        cell.startTimeLabel.text = "\(formatter.stringFromDate(event.fromDate))"
+//        cell.endTimeLabel.text = "- \(formatter.stringFromDate(event.toDate))"
         
         return cell
     }
