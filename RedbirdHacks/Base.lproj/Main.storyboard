@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -80,7 +80,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Lff-ZO-mRs" firstAttribute="leading" secondItem="Q22-sI-8Yy" secondAttribute="leading" constant="15" id="8zQ-cV-2dM"/>
-                                        <constraint firstAttribute="centerY" secondItem="GHW-hX-PGS" secondAttribute="centerY" constant="-0.5" id="caG-1M-hc1"/>
+                                        <constraint firstAttribute="centerY" secondItem="GHW-hX-PGS" secondAttribute="centerY" id="caG-1M-hc1"/>
                                         <constraint firstItem="Lff-ZO-mRs" firstAttribute="top" secondItem="Q22-sI-8Yy" secondAttribute="topMargin" id="gfs-Mz-cp7"/>
                                         <constraint firstItem="Sk3-Ak-7oa" firstAttribute="bottom" secondItem="Q22-sI-8Yy" secondAttribute="bottomMargin" id="hLA-qZ-fN6"/>
                                         <constraint firstItem="Sk3-Ak-7oa" firstAttribute="leading" secondItem="Q22-sI-8Yy" secondAttribute="leading" constant="15" id="nWK-8l-HqZ"/>
@@ -89,6 +89,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="contact" destination="GHW-hX-PGS" id="TQl-bM-Ij4"/>
                                     <outlet property="name" destination="Lff-ZO-mRs" id="S2Z-LJ-k22"/>
                                     <outlet property="specialty" destination="Sk3-Ak-7oa" id="CNH-Th-vgp"/>
                                 </connections>
@@ -221,6 +222,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="IDn-uw-ugN">
+                            <rect key="frame" x="0.0" y="66" width="600" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>

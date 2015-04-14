@@ -19,6 +19,8 @@
 		218E34F719F4ABE5006F9987 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218E34F619F4ABE5006F9987 /* Images.xcassets */; };
 		218E34FA19F4ABE5006F9987 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218E34F819F4ABE5006F9987 /* LaunchScreen.xib */; };
 		218E350619F4ABE5006F9987 /* RedbirdHacksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E350519F4ABE5006F9987 /* RedbirdHacksTests.swift */; };
+		21CFDF541ADB6B4D009B3536 /* Mentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDF531ADB6B4D009B3536 /* Mentor.swift */; };
+		21CFDF561ADCBA3E009B3536 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFDF551ADCBA3E009B3536 /* Social.framework */; };
 		21E3576A1AD733BC00E02688 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E357691AD733BC00E02688 /* Event.swift */; };
 		21FA996E1A073F1D005EF591 /* UpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +53,8 @@
 		218E34FF19F4ABE5006F9987 /* RedbirdHacksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedbirdHacksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E350419F4ABE5006F9987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		218E350519F4ABE5006F9987 /* RedbirdHacksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedbirdHacksTests.swift; sourceTree = "<group>"; };
+		21CFDF531ADB6B4D009B3536 /* Mentor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentor.swift; sourceTree = "<group>"; };
+		21CFDF551ADCBA3E009B3536 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		21E357691AD733BC00E02688 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21CFDF561ADCBA3E009B3536 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +90,7 @@
 		218E34DF19F4ABE5006F9987 = {
 			isa = PBXGroup;
 			children = (
+				21CFDF551ADCBA3E009B3536 /* Social.framework */,
 				218E34EA19F4ABE5006F9987 /* RedbirdHacks */,
 				218E350219F4ABE5006F9987 /* RedbirdHacksTests */,
 				218E34E919F4ABE5006F9987 /* Products */,
@@ -109,6 +115,7 @@
 				211EABE91A6E216900C77FF9 /* MentorsViewController.swift */,
 				211EABED1A6F5D6300C77FF9 /* ScheduleViewController.swift */,
 				211EABEF1A6F5ED600C77FF9 /* EventCell.swift */,
+				21E357691AD733BC00E02688 /* Event.swift */,
 				212A68811A12E7F300C9B7AD /* jsonRequestPlayground.playground */,
 				218E34F319F4ABE5006F9987 /* Main.storyboard */,
 				21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */,
@@ -116,7 +123,7 @@
 				218E34F819F4ABE5006F9987 /* LaunchScreen.xib */,
 				210662331A193C5B006E3419 /* Resources */,
 				218E34EB19F4ABE5006F9987 /* Supporting Files */,
-				21E357691AD733BC00E02688 /* Event.swift */,
+				21CFDF531ADB6B4D009B3536 /* Mentor.swift */,
 			);
 			path = RedbirdHacks;
 			sourceTree = "<group>";
@@ -255,6 +262,7 @@
 				21FA996E1A073F1D005EF591 /* UpdateTableViewCell.swift in Sources */,
 				211EABEE1A6F5D6300C77FF9 /* ScheduleViewController.swift in Sources */,
 				211EABEA1A6E216900C77FF9 /* MentorsViewController.swift in Sources */,
+				21CFDF541ADB6B4D009B3536 /* Mentor.swift in Sources */,
 				218E34F019F4ABE5006F9987 /* UpdatesViewController.swift in Sources */,
 				211EABF01A6F5ED600C77FF9 /* EventCell.swift in Sources */,
 			);

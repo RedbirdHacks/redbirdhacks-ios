@@ -17,6 +17,10 @@ class ScheduleViewController: UITableViewController {
     
     var tableData = [Event]()
     
+    var tableGrouped = [Int: [Event]]()
+    
+    var dayKeys = [Int]()
+    
     let scheduleURL = "https://redbirdhacks.org/json/events.json"
     //    var announcements = [AnyObject]()
     
@@ -51,7 +55,26 @@ class ScheduleViewController: UITableViewController {
                                 let description = result["description"] as? String
                                 
                                 var event = Event(fromDate: fromDate, toDate: toDate, title: title, description: description)
-                                eventsArray.append(event)
+//                                eventsArray.append(event)
+                                
+                                // Check what day the event is on
+                                let fromSecondsMinusTimeZone = Int(fromSeconds) + NSTimeZone.systemTimeZone().secondsFromGMT
+                                let day = Int(fromSecondsMinusTimeZone / 86400)
+                                
+                                // if the event is on a day with a key
+                                if let eventArrayForDay = self.tableGrouped[day] {
+                                    // add the event to the array
+                                    var newEvents = eventArrayForDay
+                                    newEvents.append(event)
+                                    self.tableGrouped[day] = newEvents
+                                }
+                                // if the event is on a day without a key
+                                else {
+                                    // create the entry in the dictionary and add the event
+                                    self.tableGrouped[day] = [event]
+                                    self.dayKeys.append(day)
+                                    self.dayKeys.sort({ $0 < $1})
+                                }
                         }
                     }
                     
@@ -83,18 +106,29 @@ class ScheduleViewController: UITableViewController {
     
     // MARK: TableView Stuff
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionArray = tableGrouped[dayKeys[section]]
+        let event = sectionArray![0]
+        
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .LongStyle
+        return "\(formatter.stringFromDate(event.fromDate))"
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return tableGrouped[dayKeys[section]]!.count
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1;
+        return tableGrouped.count;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! EventCell
         
-        let event = self.tableData[indexPath.row]
+//        let event = self.tableData[indexPath.row]
+        let sectionArray = tableGrouped[dayKeys[indexPath.section]]
+        let event = sectionArray![indexPath.row]
         
         cell.title.text = event.title
         cell.title.sizeToFit()

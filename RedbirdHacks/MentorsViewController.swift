@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 
 class MentorsViewController: UITableViewController {
@@ -17,6 +18,8 @@ class MentorsViewController: UITableViewController {
     lazy var jsonResult = NSDictionary()
     
     var tableData = NSArray()
+    
+    var mentors = [Mentor]()
     
     let mentorsURL = "http://redbirdhacks.org/json/mentors.json"
 //    var announcements = [AnyObject]()
@@ -34,7 +37,44 @@ class MentorsViewController: UITableViewController {
             let jsonOptional: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonErrorOptional)
             if let json = jsonOptional as? Dictionary<String, AnyObject> {
                 if let newResults = json["mentors"] as? [AnyObject] {
-                    self.tableData = newResults
+//                    self.tableData = newResults
+                    
+                    // Add the mentors to the mentorsArray
+                    for i in 0 ..< newResults.count {
+                        let result: AnyObject = newResults[i]
+                        if let name = result["name"] as? String,
+                            specialty = result["specialty"] as? String,
+                            contacts = result["contacts"] as? [AnyObject],
+                            description = result["description"] as? String {
+                                var contactMethods = [ContactMethod]()
+                                
+                                if let contacts = contacts[0] as? Dictionary<String, AnyObject> {
+                                    if let twitterString = contacts["twitter"] as? String where !twitterString.isEmpty {
+                                        let twitter = ContactMethod.Twitter(NSURL(string: twitterString)!)
+                                        contactMethods.append(twitter)
+                                    }
+                                    if let facebookString = contacts["facebook"] as? String where !facebookString.isEmpty {
+                                        let facebook = ContactMethod.Facebook(NSURL(string: facebookString)!)
+                                        contactMethods.append(facebook)
+                                    }
+                                    if let emailString = contacts["email"] as? String where !emailString.isEmpty {
+                                        let email = ContactMethod.Email(emailString)
+                                        contactMethods.append(email)
+                                    }
+                                    if let linkedinString = contacts["linkedin"] as? String where !linkedinString.isEmpty {
+                                        let linkedin = ContactMethod.LinkedIn(NSURL(string: linkedinString)!)
+                                        contactMethods.append(linkedin)
+                                    }
+                                    if let phoneString = contacts["phone"] as? String where !phoneString.isEmpty {
+                                        let phone = ContactMethod.Phone(phoneString.toInt()!)
+                                        contactMethods.append(phone)
+                                    }
+                                }
+                                
+                                var mentor = Mentor(name: name, specialty: specialty, contacts: contactMethods, description: "")
+                                self.mentors.append(mentor)
+                        }
+                    }
                     
                     // reload data on main thread
                     dispatch_async(dispatch_get_main_queue()) {
@@ -63,8 +103,7 @@ class MentorsViewController: UITableViewController {
     // MARK: TableView Stuff
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("Number of Rows: \(data.length)")
-        return tableData.count
+        return mentors.count
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -74,17 +113,59 @@ class MentorsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("MentorCell", forIndexPath: indexPath) as! MentorCell
         
-        if let mentor = self.tableData[indexPath.row] as? NSDictionary {
-            if let text = mentor["name"] as? String {
-                cell.name.text = text
-            }
-            if let text = mentor["specialty"] as? String {
-                cell.specialty.text = text
-            }
+        let mentor = mentors[indexPath.row]
+        
+        cell.name.text = mentor.name
+        cell.specialty.text = mentor.specialty
+        let title: String
+        switch mentor.contacts[0] {
+        case .Email(let email):
+            title = "email"
+        case .Facebook(let facebookURL):
+            title = "facebook"
+        case .LinkedIn(let linkedInURL):
+            title = "linkedin"
+        case .Phone(let phoneNumber):
+            title = "call"
+        case .Twitter(let twitterURL):
+            title = "tweet"
         }
+        cell.contact.setTitle(title, forState: UIControlState.Normal)
+        cell.contact.addTarget(self, action: "tapTwitter:", forControlEvents: .TouchUpInside)
+        
         return cell
     }
     
-    
-    // MARK: JSON request Stuff
+    func tapTwitter(sender: UIButton) {
+        // get indexPath for button
+        // get mentor for indexPath
+        // get tapped ContactMethod for mentor
+        // perform correct action for ContactMethod
+        println("twitter tapped")
+        
+        if let tappedCell = sender.superview?.superview as? MentorCell,
+               tappedCellIndexPath = self.tableView.indexPathForCell(tappedCell) {
+            
+            let mentor = mentors[tappedCellIndexPath.row]
+            let contact = mentor.contacts[0]
+                
+                switch contact {
+                case ContactMethod.Twitter(let twitterURL):
+                    let twitterText = twitterURL.relativePath
+                    let twitterHandle = twitterText!.substringFromIndex(advance(twitterText!.startIndex,1))
+                    
+                    if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+                        var tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+                        tweetSheet.setInitialText("@\(twitterHandle) #RedbirdHacks ")
+                        self.presentViewController(tweetSheet, animated: true, completion: nil)
+                    } else {
+                        println("error")
+                    }
+                case ContactMethod.Email(let emailAddress):
+                    println("sending email")
+                default:
+                    println("tap action not defined")
+                }
+        }
+    }
 }
