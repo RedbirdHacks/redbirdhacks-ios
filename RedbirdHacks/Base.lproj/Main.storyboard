@@ -29,7 +29,7 @@
         <scene sceneID="S3I-fW-eVI">
             <objects>
                 <navigationController id="FgT-9x-ps5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Updates" image="first" id="YEq-uB-Ei2"/>
+                    <tabBarItem key="tabBarItem" title="Updates" image="Update-100" id="YEq-uB-Ei2"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="gY1-Yn-YlQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -179,7 +179,7 @@
         <scene sceneID="hXO-gS-jME">
             <objects>
                 <navigationController id="AdC-NC-XAZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Schedule" image="first" id="uUz-R8-0Zf"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="Clock-100" id="uUz-R8-0Zf"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="oYU-8I-vzD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -194,11 +194,11 @@
             </objects>
             <point key="canvasLocation" x="828" y="750"/>
         </scene>
-        <!--Mentors-->
+        <!--Navigation Controller-->
         <scene sceneID="tkl-mR-7eO">
             <objects>
                 <navigationController id="qiP-5c-i1s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mentors" image="second" id="8gO-R4-wGK"/>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="8gO-R4-wGK"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="jbe-mW-Dgh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -261,8 +261,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="Clock-100" width="25" height="25"/>
+        <image name="Update-100" width="25" height="25"/>
     </resources>
     <color key="tintColor" red="0.67450980392156867" green="0.0" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
 </document>

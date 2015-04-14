@@ -21,6 +21,7 @@
 		218E350619F4ABE5006F9987 /* RedbirdHacksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E350519F4ABE5006F9987 /* RedbirdHacksTests.swift */; };
 		21CFDF541ADB6B4D009B3536 /* Mentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFDF531ADB6B4D009B3536 /* Mentor.swift */; };
 		21CFDF561ADCBA3E009B3536 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFDF551ADCBA3E009B3536 /* Social.framework */; };
+		21CFDF581ADCE9B1009B3536 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFDF571ADCE9B1009B3536 /* MessageUI.framework */; };
 		21E3576A1AD733BC00E02688 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E357691AD733BC00E02688 /* Event.swift */; };
 		21FA996E1A073F1D005EF591 /* UpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		218E350519F4ABE5006F9987 /* RedbirdHacksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedbirdHacksTests.swift; sourceTree = "<group>"; };
 		21CFDF531ADB6B4D009B3536 /* Mentor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentor.swift; sourceTree = "<group>"; };
 		21CFDF551ADCBA3E009B3536 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		21CFDF571ADCE9B1009B3536 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		21E357691AD733BC00E02688 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		21FA996D1A073F1D005EF591 /* UpdateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21CFDF581ADCE9B1009B3536 /* MessageUI.framework in Frameworks */,
 				21CFDF561ADCBA3E009B3536 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +93,7 @@
 		218E34DF19F4ABE5006F9987 = {
 			isa = PBXGroup;
 			children = (
+				21CFDF571ADCE9B1009B3536 /* MessageUI.framework */,
 				21CFDF551ADCBA3E009B3536 /* Social.framework */,
 				218E34EA19F4ABE5006F9987 /* RedbirdHacks */,
 				218E350219F4ABE5006F9987 /* RedbirdHacksTests */,

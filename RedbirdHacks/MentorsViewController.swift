@@ -8,6 +8,7 @@
 
 import UIKit
 import Social
+import MessageUI
 
 
 class MentorsViewController: UITableViewController {
@@ -21,7 +22,7 @@ class MentorsViewController: UITableViewController {
     
     var mentors = [Mentor]()
     
-    let mentorsURL = "http://redbirdhacks.org/json/mentors.json"
+    let mentorsURL = "https://api.myjson.com/bins/30aap"
 //    var announcements = [AnyObject]()
     
     override func viewDidLoad() {
@@ -131,17 +132,17 @@ class MentorsViewController: UITableViewController {
             title = "tweet"
         }
         cell.contact.setTitle(title, forState: UIControlState.Normal)
-        cell.contact.addTarget(self, action: "tapTwitter:", forControlEvents: .TouchUpInside)
+        cell.contact.addTarget(self, action: "tapContactButton:", forControlEvents: .TouchUpInside)
         
         return cell
     }
     
-    func tapTwitter(sender: UIButton) {
+    func tapContactButton(sender: UIButton) {
         // get indexPath for button
         // get mentor for indexPath
         // get tapped ContactMethod for mentor
         // perform correct action for ContactMethod
-        println("twitter tapped")
+        println("contact button tapped")
         
         if let tappedCell = sender.superview?.superview as? MentorCell,
                tappedCellIndexPath = self.tableView.indexPathForCell(tappedCell) {
@@ -163,9 +164,36 @@ class MentorsViewController: UITableViewController {
                     }
                 case ContactMethod.Email(let emailAddress):
                     println("sending email")
+                    var composeViewController = MFMailComposeViewController()
+                    composeViewController.mailComposeDelegate = self
+                    composeViewController.setSubject("RedbirdHacks - Mentor")
+                    composeViewController.setToRecipients([emailAddress])
+                    self.presentViewController(composeViewController, animated: true, completion: nil)
+                case ContactMethod.Facebook(let facebookURL):
+                    UIApplication.sharedApplication().openURL(facebookURL)
+                case ContactMethod.LinkedIn(let linkedInURL):
+                    UIApplication.sharedApplication().openURL(linkedInURL)
                 default:
                     println("tap action not defined")
                 }
         }
+    }
+}
+
+extension MentorsViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        switch result.value {
+        case MFMailComposeResultCancelled.value:
+            NSLog("Mail cancelled")
+        case MFMailComposeResultSaved.value:
+            NSLog("Mail saved")
+        case MFMailComposeResultSent.value:
+            NSLog("Mail sent")
+        case MFMailComposeResultFailed.value:
+            NSLog("Mail sent failure: %@", [error.localizedDescription])
+        default:
+            break
+        }
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
 }
